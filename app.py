@@ -152,7 +152,7 @@ image_map = {
 
 st.set_page_config(page_title="Aircraft Performance Calculator", page_icon="✈️", layout="centered")
 st.title("✈️ Aircraft Performance Calculator")
-st.caption("US Standard Atmosphere 1976 | Variable Density Model | Categorized Library")
+st.caption("Used US Standard Atmosphere 1976 | Categorized Library")
 
 # Aircraft Category
 st.header("1. Choose Aircraft")
@@ -217,9 +217,7 @@ with st.expander("📋 Aircraft Specifications"):
         col2.metric("Rotorcraft", "Rotary wing", "N/A")
         col3.metric("Drag Coeff", f"{plane['cd']}", "Profile drag")
 
-# ============================================================================
 # FLIGHT CONDITIONS
-# ============================================================================
 st.header("2. Enter Flight Conditions")
 
 col1, col2 = st.columns(2)
@@ -249,10 +247,10 @@ if st.button("🚀 Calculate Performance", type="primary"):
         # Get aircraft type
         aircraft_type = plane.get("type", "fixed")
         
-        # Calculate lift and drag based on aircraft type
+        # Calculating lift and drag based on aircraft type
         if aircraft_type == "helicopter" or plane["wing_area_m2"] == 0:
             lift = 0
-            # Use rotor disc area for drag calculation
+            # Using rotor disc area for drag calculation
             if aircraft_name == "Robinson R22":
                 drag = 0.5 * plane["cd"] * rho * velocity**2 * 45  # ~7.5m rotor diameter
             elif aircraft_name == "Boeing CH-47":
